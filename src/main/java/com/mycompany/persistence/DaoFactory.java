@@ -16,21 +16,40 @@
  */
 package com.mycompany.persistence;
 
-//import edu.eci.pdsw.samples.persistence.jdbcimpl.JDBCDaoFactory;
-//import edu.eci.pdsw.samples.persistence.mybatisimpl.MyBatisDaoFactory;
-
+import com.mycompany.mybatisimpl.MyBatisDaoFactory;
 import java.util.Properties;
 
 /**
  *
- * @author hcadavid
+ * @author Juan Felipe Ortiz Niño 
  */
 public abstract class DaoFactory {
 
     protected DaoFactory() {
     }
 
+    /*El marcador volatil se asigna para que haya una variable por cada objeto*/
+    
     private static volatile DaoFactory instance = null;
+    
+    /*Construye una instancia de la clase MyBatisDaoFactory apartir de un archivo de configuracion*/
+    
+    public static DaoFactory getInstance(Properties appProperties){
+        if(instance == null){
+            synchronized(DaoFactory.class){
+                if(instance == null){
+                    if (appProperties.get("dao").equals("mybatis")) {
+                        instance = new MyBatisDaoFactory(appProperties);
+                    } else {
+                        throw new RuntimeException("Wrong configuration: Unsupported DAO:" + appProperties.get("dao"));
+                    }
+                }
+                
+            }
+            
+        }
+        return instance;    
+    }
 
     /*public static DaoFactory getInstance(Properties appProperties) {
         if (instance == null) {
@@ -48,12 +67,19 @@ public abstract class DaoFactory {
         }
         return instance;
     }*/
+    
 
     public abstract void beginSession() throws PersistenceException;
-
-    //public abstract DaoEntradaForo getDaoEntradaForo();
     
     public abstract DaoUsuario getDaoUsuario();
+    
+    public abstract DaoAfiliacion getDaoAfiliacion();
+    
+    public abstract DaoEstudiante getDaoEstudiante();
+    
+    public abstract DaoEgresado getDaoEgresado();
+    
+    public abstract DaoSolicitud getDaoSolicitud();
 
     public abstract void commitTransaction() throws PersistenceException;
 

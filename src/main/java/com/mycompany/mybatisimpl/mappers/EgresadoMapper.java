@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.persistence;
-
-import com.mycompany.conceptos.Afiliacion;
+package com.mycompany.mybatisimpl.mappers;
 
 /**
  *
  * @author juan
  */
-public interface DaoAfiliacion {
+public interface EgresadoMapper {
     
-    /*Me muestra la informacion de la afiliacion del usuario
-    */
-    //public Afiliacion cargar(int i);
 }
