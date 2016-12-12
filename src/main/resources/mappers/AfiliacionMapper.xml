@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.mycompany.mybatisimpl.mappers.SolicitudMapper">
+    
+    <select id="getAfiliacion" resultMap="AfiliacionResult" parameterType="map">
+        select id, fecha_inicio, fecha_final, estado 
+        from afiliaciones 
+        where id=#{afiliacionid}
+    </select>	
+    
+    <resultMap type='Afiliacion' id='AfiliacionResult'>
+        <id property='id' column='id'/>
+        <result property='fechaInicio' column='fecha_inicio'/> 
+        <result property='fechaFinal' column='fecha_final'/>
+        <result property='estado' column='estado'/>    
+    </resultMap>
+    
+
+</mapper>

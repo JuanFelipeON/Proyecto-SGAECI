@@ -5,6 +5,8 @@
  */
 package com.mycompany.mybatisimpl;
 
+import com.mycompany.conceptos.Afiliacion;
+import com.mycompany.mybatisimpl.mappers.AfiliacionMapper;
 import com.mycompany.persistence.DaoAfiliacion;
 import org.apache.ibatis.session.SqlSession;
 
@@ -19,6 +21,17 @@ public class MyBatisDAOAfiliacion implements DaoAfiliacion{
     public MyBatisDAOAfiliacion(SqlSession session) {
         this.currentSession=session;
     }
+
+    @Override
+    public Afiliacion generarCertificado(int id) {
+        AfiliacionMapper mapper = currentSession.getMapper(AfiliacionMapper.class);
+        Afiliacion af = mapper.getAfiliacion(id);
+        currentSession.commit();
+        return af;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
     
     
 }

@@ -16,4 +16,5 @@ public interface DaoAfiliacion {
     /*Me muestra la informacion de la afiliacion del usuario
     */
     //public Afiliacion cargar(int i);
+    public Afiliacion generarCertificado(int id);
 }

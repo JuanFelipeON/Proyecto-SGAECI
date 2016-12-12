@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.mycompany.mybatisimpl.mappers.SolicitudMapper">
+    
+    <select id="getSolicitud" resultMap="SolicitudResult" parameterType="map">
+        select fecha, estado, id, solicitantes_id from solicitudes
+        where id=#{solicitudid}
+    </select>
+    
+    <resultMap type='Solicitud' id='SolicitudResult'>
+        <id property='id' column='id'/>
+        <result property='fecha' column='fecha'/>
+        <result property='estado' column='estado'/>  
+        <result property='solicitanteID' column='solicitantes_id'/>  
+    </resultMap>
+    
+    <select id="getAllSolicitudesPendientes" resultMap="SolicitudAllResult">
+        select fecha, estado, id, solicitantes_id from solicitudes
+        where estado="p"
+    </select>
+    
+    <resultMap type='Solicitud' id='SolicitudAllResult'>
+        <id property='id' column='id'/>
+        <result property='fecha' column='fecha'/>
+        <result property='estado' column='estado'/>  
+        <result property='solicitanteID' column='solicitantes_id'/>  
+    </resultMap>
+    
+    
+
+</mapper>

@@ -14,7 +14,7 @@ import org.apache.ibatis.session.SqlSession;
  */
 public class MyBatisDAOUsuario implements DaoUsuario{
     
-    private SqlSession sesionActual;
+    private SqlSession sesionActual = null;
     
     public MyBatisDAOUsuario (SqlSession sesion){
         this.sesionActual = sesion;

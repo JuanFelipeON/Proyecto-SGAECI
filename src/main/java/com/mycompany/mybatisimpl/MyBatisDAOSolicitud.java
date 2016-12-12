@@ -18,7 +18,7 @@ import org.apache.ibatis.session.SqlSession;
  */
 public class MyBatisDAOSolicitud implements DaoSolicitud{
     
-    private SqlSession sesionActual;
+    private SqlSession sesionActual = null;
     
     public MyBatisDAOSolicitud (SqlSession sesion){
         this.sesionActual = sesion;
@@ -36,7 +36,8 @@ public class MyBatisDAOSolicitud implements DaoSolicitud{
     @Override
     public List<Solicitud> cargarTodas() throws PersistenceException {
         SolicitudMapper mapper = sesionActual.getMapper(SolicitudMapper.class);
-        List<Solicitud> listaSolicitudes = mapper.getAllSolicitudes();
+        List<Solicitud> listaSolicitudes = mapper.getAllSolicitudesPendientes();
+        sesionActual.commit();
         return listaSolicitudes;
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

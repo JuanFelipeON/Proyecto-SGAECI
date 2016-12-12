@@ -7,6 +7,7 @@ package com.mycompany.mybatisimpl.mappers;
 
 import com.mycompany.conceptos.Solicitud;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 /**
  *
@@ -14,7 +15,11 @@ import java.util.List;
  */
 public interface SolicitudMapper {
     
-    public Solicitud getSolicitud(int id);
+    public Solicitud getSolicitud(@Param("solicitudid") int id);
     
-    public List<Solicitud> getAllSolicitudes();
+    public List<Solicitud> getAllSolicitudesPendientes();
+    
+    
+    
+    
 }
